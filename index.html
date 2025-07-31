@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyHub - Premium Real Estate Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-home"></i>
+                <span>PropertyHub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#price-estimator">Price Estimator</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Find Your Dream Property</h1>
+            <p>Discover premium real estate opportunities with our AI-powered platform</p>
+            <div class="hero-search">
+                <input type="text" placeholder="Enter location or property type...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>1000+</h3>
+                    <p>Properties Listed</p>
+                </div>
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat">
+                    <h3>50+</h3>
+                    <p>Cities Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="properties-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Properties</h2>
+                <p>Discover our handpicked premium properties</p>
+            </div>
+            
+            <div class="property-filters">
+                <button class="filter-btn active" onclick="filterProperties('all')">All</button>
+                <button class="filter-btn" onclick="filterProperties('apartment')">Apartments</button>
+                <button class="filter-btn" onclick="filterProperties('villa')">Villas</button>
+                <button class="filter-btn" onclick="filterProperties('commercial')">Commercial</button>
+            </div>
+
+            <div class="properties-grid" id="properties-grid">
+                <!-- Property cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map-section" class="map-section">
+        <div class="container">
+            <h2>Explore Properties on Map</h2>
+            <div id="map" class="map-container"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Premium Services</h2>
+                <p>Experience the future of real estate with our cutting-edge features</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Price Estimator</h3>
+                    <p>Get accurate property valuations using our advanced AI algorithms</p>
+                    <button class="service-btn" onclick="scrollToSection('price-estimator')">Try Now</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Digital Signatures</h3>
+                    <p>Complete transactions securely with our e-signature technology</p>
+                    <button class="service-btn" onclick="scrollToSection('documents')">Learn More</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Interactive Maps</h3>
+                    <p>Explore properties with detailed location insights and analytics</p>
+                    <button class="service-btn" onclick="scrollToSection('map-section')">Explore</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Price Estimator -->
+    <section id="price-estimator" class="estimator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Powered Price Estimator</h2>
+                <p>Get instant property valuations using machine learning</p>
+            </div>
+            
+            <div class="estimator-container">
+                <div class="estimator-form">
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select id="propertyType">
+                            <option value="apartment">Apartment</option>
+                            <option value="villa">Villa</option>
+                            <option value="plot">Plot</option>
+                            <option value="commercial">Commercial</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Area (sq ft)</label>
+                        <input type="number" id="area" placeholder="Enter area in square feet">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="locality" placeholder="Enter locality or area">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <select id="bedrooms">
+                            <option value="1">1 BHK</option>
+                            <option value="2">2 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="4">4+ BHK</option>
+                        </select>
+                    </div>
+                    
+                    <button class="estimate-btn" onclick="estimatePrice()">
+                        <i class="fas fa-calculator"></i>
+                        Get Price Estimate
+                    </button>
+                </div>
+                
+                <div id="price-result" class="price-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document Management -->
+    <section id="documents" class="documents-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Document Management & E-Signatures</h2>
+                <p>Secure, digital, and legally compliant document handling</p>
+            </div>
+            
+            <div class="documents-container">
+                <div class="upload-section">
+                    <h3>Upload Documents</h3>
+                    <div class="upload-area" onclick="document.getElementById('documentUpload').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <small>PDF, JPG, PNG files up to 10MB</small>
+                    </div>
+                    <input type="file" id="documentUpload" multiple accept=".pdf,.jpg,.png,.jpeg" style="display: none;">
+                    <div id="uploaded-docs" class="uploaded-docs"></div>
+                </div>
+                
+                <div class="signature-section">
+                    <h3>Digital Signature</h3>
+                    <div class="signature-container">
+                        <canvas id="signature-pad" width="500" height="250"></canvas>
+                        <div class="signature-controls">
+                            <button onclick="clearSignature()"><i class="fas fa-eraser"></i> Clear</button>
+                            <button onclick="saveSignature()"><i class="fas fa-save"></i> Save Signature</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to find your dream property? Let's connect!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Business District, Hyderabad, Telangana 500001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9876543210</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@propertyhub.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="tel" placeholder="Your Phone" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <span>PropertyHub</span>
+                    </div>
+                    <p>Your trusted partner in real estate, powered by cutting-edge AI technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Property Buying</a></li>
+                        <li><a href="#">Property Selling</a></li>
+                        <li><a href="#">Property Rental</a></li>
+                        <li><a href="#">Investment Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> info@propertyhub.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PropertyHub. All rights reserved. | Built with ❤ for SNIST Hackathon</p>
+            </div>
+        </div>
+    </footer>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly">
+</script>
+    <script src="script.js"></script>
+</body>
+</html>
